@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>VueFlix</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="grid.css">
 </head>
 
 <body class="container">
@@ -29,10 +30,10 @@
     </div>
 
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-xs-6">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3>RESULTS</h3>
+            <h3>Results</h3>
             <p>Now Viewing result for {{query}}</p>
 
           </div>
@@ -55,29 +56,78 @@
               <p>
                 <b>Cast:</b> {{details.show_cast}}
               </p>
+               
               <button @click="clearDetails">BACK</button>
             </div>
 
+
+
             <div v-if="movies.length > 0">
-              <ul class="list-group"  v-if="!details.show_title">
+              <ul class="list-group" v-if="!details.show_title">
                 <li class="list-group-item" v-for="movie in movies" @click="setDetails(movie)">
                   <img :src="movie.poster" height="150">
+                   <button @click="addMyMovie(movie)">Add Movie</button>
                   <h4>{{movie.show_title}}</h4>
+                 
                 </li>
               </ul>
             </div>
 
+
           </div>
         </div>
       </div>
+
+
+
+        <div class="col-xs-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3>My List</h3>
+            <p>Your items here</p>
+
+          </div>
+
+          <!---->
+          <!--<div v-show="showDetails===showDetails" class="panel-body">
+            <div v-if="details.show_title">
+              <img :src="details.poster" width="100">
+              <h3>{{details.show_title}}</h3>
+              <p>
+                <b>Director:</b> {{details.director}},
+                <b>Runtime:</b> {{details.runtime}},
+              </p>
+              <p>
+                <b>Ratings:</b> {{details.rating}},
+                <b>Released:</b> {{details.release_year}},
+                <b>Category:</b> {{details.category}}
+              </p>
+              <p>
+                <b>Summary:</b> {{details.summary}}
+              </p>
+              <p>
+                <b>Cast:</b> {{details.show_cast}}
+              </p>
+              <button @click="clearDetails">BACK</button>
+            </div>
+          </div>-->
+<!---->
+
+
+            <div v-if="myMovies.length > 0">
+              <ul class="list-group">
+                <li class="list-group-item" v-for="movie in myMovies">
+                  <img :src="movie.poster" height="150" @click="setDetails(movie)">
+                  <h4>{{movie.show_title}}</h4>
+                  <button @click="removeMyMovie(movie)">Remove Movie</button>
+                </li>
+              </ul>
+            </div>
+
+
+        </div>
+      </div>
     </div>
-
-
-
-
-
-
-
   </div>
 
 
